@@ -195,6 +195,10 @@ tip: UDP和TCP使用的是两套端口，可以相同
 <!-- MTU,为什么要有mss，为什么不让IP层分片? -->
 <!-- 有两张图，发送窗口，接收窗口，序号按字节来算 -->
 
+* 流量控制
+<!-- MTU,为什么要有mss，为什么不让IP层分片? -->
+<!-- 有两张图，发送窗口，接收窗口，序号按字节来算 -->
+
 * 拥塞避免 
 <!-- 
 慢开始（下载慢慢变快）
@@ -211,6 +215,32 @@ tip: UDP和TCP使用的是两套端口，可以相同
 不讲：同个端口是否能被多个应用绑定，reuse readdr , UDP和TCP端口是否能重复
 -->
 
+[slide]
+# tcp 三次握手
+
+俩图
+
+[slide]
+# tcp 四次挥手
+* 单双工
+
+[slide]
+# tcp 连接抓包图
+* 单双工
+
+[slide]
+# tcp 如何保证不丢包 按顺到达
+* 编号
+* ACK
+
+[slide]
+# tcp 发送端滑动窗口
+
+[slide]
+# tcp 接受端滑动窗口
+
+[slide]
+# tcp MSS
 
 [slide]
 ## Nagle’s Algorithm：
@@ -232,9 +262,14 @@ end if
 </pre>
 
 [slide]
+# tcp 流量控制
+
+[slide]
+# tcp 拥塞避免
+
+[slide]
 # heartbeat
 ----
-* 保证通讯双方具备通信能力 - 三次握手 {:&.rollIn}
 <!-- 三次握手是否可以改成两次？  -->
 * keep-alive
 * 应用层心跳
@@ -243,6 +278,7 @@ end if
 # 应用层
 <font size="4" color="yellow">会话层/表示层／应用层</font>
 ----
+
 http 超文本传输协议
 Linux IO模型 理解socket编程从应用层接口到驱动收发包的全部过程 2
 BIO,NIO,AIO, 比较。 select,epoll,iocp 2 对比图
