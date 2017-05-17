@@ -2,7 +2,7 @@ title: 网络分享
 speaker: 陈洪
 url: https://github.com/ksky521/nodePPT
 transition: slide3
-files: /js/demo.js,/css/demo.css,/css/bootstrap.css,/js/zoom.js
+files: /js/demo.js,/css/demo.css,/js/zoom.js
 theme: moon
 usemathjax: yes
 
@@ -122,10 +122,14 @@ ping -D -s 1453 www.fenqile.com
 
 
 [slide]
-# 传输层
+## 传输层
 <font size="4" color="yellow">传输层</font>
 ----
-<img src=/img/udp_tcp.png width="400" height="250">
+
+* UDP
+* TCP
+* 端口
+
 UDP（不可靠传输）
 优势以及合适的场景，语音 视屏
 广播和多波，QQ自己重写确认机制，游戏，视频
@@ -164,18 +168,32 @@ tip: UDP和TCP使用的是两套端口，可以相同
 443/tcp HTTPS used for securely transferring web pages
 -->
 
+[slide]
+## 端口
+* 常用端口
+* 登记端口号
+* 随机端口
+
+问题： udp和tcp的端口可以相同吗， 多个进程可以绑定同个端口吗
 
 [slide]
-# tcp是如何保证可靠传输的？ 
+## UDP
+图
+
+问题： udp不可靠是指包容易丢，还是收到的内容会有问题
+
+[slide]
+# tcp 
 ----
-* 保证通讯双方具备通信能力 - 三次握手 {:&.rollIn}
+报头
+* 连接管理 三次握手 四次挥手
 <!-- 三次握手是否可以改成两次？  -->
+* 可靠传输
+<!-- 单双工，半全，抓包图， http机制的又改成了单工 -->
 
-* 按序，不丢到达（可靠） - 序号
-<!-- 有两张图，发送窗口，接收窗口，序号按字节来算 -->
-
-* MSS
+* 滑动窗口 MSS
 <!-- MTU,为什么要有mss，为什么不让IP层分片? -->
+<!-- 有两张图，发送窗口，接收窗口，序号按字节来算 -->
 
 * 拥塞避免 
 <!-- 
@@ -187,15 +205,40 @@ tip: UDP和TCP使用的是两套端口，可以相同
 * 糊涂窗口综合症
 <!-- 什么时候发送数据的问题，攒数据，满mss或者200ms -->
 
-* 四次挥手
-<!-- 单双工，半全，抓包图， http机制的又改成了单工 -->
-
 <!--
 抓包图
 心跳（tcp自带心跳，业务心跳，reset）
 不讲：同个端口是否能被多个应用绑定，reuse readdr , UDP和TCP端口是否能重复
 -->
 
+
+[slide]
+## Nagle’s Algorithm：
+----
+
+<pre><code class="markdown">/* 伪代码如下 */
+if there is new data to send
+  if the window size >= MSS and available data is >= MSS
+    send complete MSS segment now
+  else
+    if there is unconfirmed data still in the pipe
+      enqueue data in the buffer until an acknowledge is received
+    else
+      send data immediately
+    end if
+  end if
+end if
+</code>
+</pre>
+
+[slide]
+# heartbeat
+----
+* 保证通讯双方具备通信能力 - 三次握手 {:&.rollIn}
+<!-- 三次握手是否可以改成两次？  -->
+* keep-alive
+* 应用层心跳
+* reset 
 [slide]
 # 应用层
 <font size="4" color="yellow">会话层/表示层／应用层</font>
