@@ -7,28 +7,16 @@ theme: moon
 usemathjax: yes
 
 [slide style="background-image:url('/img/netbg2.jpg')"]
-# 网络分享
-<small>陈洪</small>
+## 网络分享
+<small>分享者：陈洪</small>
 
 [slide]
-# 网络需求
-----
-计算机通信 {:&.rollIn}
-
-[slide]
-# 计算机通信流程 
+## 需求：计算机通信
 ----
 * 硬件层面，比特流传输，在局域网内主机到主机 {:&.rollIn}
 * 跨网络找到主机
 * 找到应用（端口查找），可靠传输
-* 应用交互语言
-
-<!--
- 各自解决什么问题，局域网内传输，主机查找，端口查找，传输内容协调 3
- 网络分层，网络访问层、互联网层、传输层和应用层，粗略讲一下OSI，标准和工业标准(不听建议)。3
- 网络通信整个流程图 1 p66
- 问题 2
- -->
+* 用什么语言和对方沟通
 
 [slide]
 ## 网络分层
@@ -41,96 +29,88 @@ OSI | TCP/IP | PDU（协议数据单元） | protocol
 <table><tbody><tr><td>数据链路层</td></tr><tr><td>物理层</td></tr></tbody></table>| 网络接口层 | <table><tbody><tr><td>frame</td></tr><tr><td>bit</td></tr></tbody></table> | <table><tbody><tr><td>FDDI、Ethernet、PDN、SLIP、PPP</td></tr><tr><td>IEEE 802.1A  IEEE802.2-IEEE 802.11</td></tr></tbody></table> 
 
 [slide]
-# 网络接口层
+## 网络总体流程
+----
+缺一张网络通信总体流程图
+
+[slide]
+## 网络接口层
 <font size="4" color="yellow">物理层和数据链路层</font>
 ----
 
-<div class="bs-example" data-example-id="text-capitalization">
-    <p class="text-lowercase">Lowercased text.</p>
-    <p class="text-uppercase">Uppercased text.</p>
-    <p class="text-capitalize">Capitalized text.</p>
-  </div>
-
-<p class="text-center text-uppercase">abc主要确定与传输媒体的接口的一些特性，以及在局域网内主机与主机之间的通信 </p>
-> 不经过路由器 
-> 不保证可靠传输
-
-负责的内容
-* 封装成帧 {:&.rollIn}
-* 透明传输 
-* 差错校验
-
-<!--
-数据包的组装格式（mac，IP,端口)
-报文格式：
-跳网络mac会变
-mac帧结构 
-
-ping -D -s 1453 www.fenqile.com
--->
+* 负责的内容(不过路由器)
+    * 封装成帧
+    * 透明传输
+    * 差错校验
 
 [slide]
-# MTU（Maximum Transmission Unit）
+## 网络接口层(mac 报头)
 ----
-最大传输单元是指一种通信协议的某一层上面所能通过的最大数据包大小
+<div >
+    <img src="/img/mac.png">
+</div>
+---
+> 为什么数据会有大小限制
+
+[slide]
+## MTU（Maximum Transmission Unit）
+----
 <div >
     <img src="/img/mtu.png">
 </div>
 
-<!--
-    MTU太大或者太小有什么问题？
--->
-
 [slide]
-# 网际层
+## 网际层
 <font size="4" color="yellow">网络层</font>
 ----
 
-多个网络使用路由器互联成为互联网中的各个问题
+解决问题：多个网络使用路由器互联成为互联网中的各个问题
 
-负责的内容
-* 虚拟互联网络，屏蔽各种物理网络的异构性 {:&.rollIn}
-* IP地址分类，子网划分
-* 路由转发
-* NAT
-
-* IP包内容
-* ARP协议（跳网络时换MAC）：VIP（HA),ARP欺骗
-* ICMP协议（PING）
-* tracert traceroute 命令 TTL的概念
-
-<!-- 
-有了MAC为什么还需要有IP地址
--->
-
+* 负责的内容
+    * 虚拟互联网络，屏蔽各种物理网络的异构性
+    * IP地址分类，子网划分
+    * 路由转发
+    * NAT
+---    
+> 有了mac地址为什么还要有IP地址
 
 [slide]
-#ARP/IP/TCP协议
-<div class="columns2">
-    <div >
-        <img src="/img/arp.png" height="250" width="550">
-        <img src="/img/ip.png" height="250" width="550">
-    </div>
-    <div>
-        <img src="/img/tcp.png" height="350">
-    </div>
+## 网际层(IP 报头)
+----
+<div >
+    <img src="/img/ip.png">
 </div>
+---
+> 有MTU限制，IP大包如何传递
 
-<!--
-各个协议头的原地址和目标地址有什么不一样？
--->
+[slide]
+## ARP(Address Resolution Protocol)
+----
+ 解决问题：IP转MAC {:&.flexbox.vleft}
+    * ARP缓存、静态ARP
+    * VIP（HA）
+    * ARP欺骗、ARP攻击
 
+[slide]
+## ICMP <font size='5'>(Internet Control Message Protocol)</font>
+----
+    * Ping
+    * TTL(tracert traceroute)
 
 [slide]
 ## 传输层
 <font size="4" color="yellow">传输层</font>
 ----
+解决问题：端到端的传输
 
-* UDP
-* TCP
 * 端口
+* UDP (User Datagram Protocol)
+* TCP (Transmission Control Protocol)
 
-UDP（不可靠传输）
+---
+> UDP不可靠指的是包容易丢还是内容不可靠
+
+<!-- UDP（不可靠传输）
 优势以及合适的场景，语音 视屏
 广播和多波，QQ自己重写确认机制，游戏，视频
 
@@ -146,104 +126,110 @@ TCP（可靠传输）
 客户端使用的端口号
 tip: UDP和TCP使用的是两套端口，可以相同 
 
-问题：UDP不可靠指的是包容易丢还是内容不可靠？
-
-<!--
-端口和套接字
-21/tcp FTP 文件传输协议
-22/tcp SSH 安全登录、文件传送(SCP)和端口重定向
-23/tcp Telnet 不安全的文本传送
-25/tcp SMTP Simple Mail Transfer Protocol (E-mail)
-53	DNS域服务器所开放的端口
-67/68／udp DHCP Dynamic Host Configuration Protocol
-69/udp TFTP Trivial File Transfer Protocol
-79/tcp finger Finger
-80/tcp HTTP 超文本传送协议 (WWW)
-110/tcp POP3 Post Office Protocol (E-mail)
-113/tcp ident old identification server system
-119/tcp NNTP used for usenet newsgroups
-161	SNMP简单网络管理协议 的端口号
-162	SNMP简单网络管理协议 的端口号
-220/tcp IMAP3
-443/tcp HTTPS used for securely transferring web pages
--->
+问题：UDP不可靠指的是包容易丢还是内容不可靠？ -->
 
 [slide]
 ## 端口
+<font size="4" color="yellow">传输层</font>
+----
 * 常用端口
 * 登记端口号
 * 随机端口
 
-问题： udp和tcp的端口可以相同吗， 多个进程可以绑定同个端口吗
+---
+> udp和tcp的端口可以相同吗 不同进程可以绑定同个端口吗
 
 [slide]
-## UDP
-图
+## UDP 报头
 
-问题： udp不可靠是指包容易丢，还是收到的内容会有问题
+<div >
+    <img src="/img/ip.png">
+</div>
+
+---
+> udp不可靠是指包容易丢，还是收到的内容会有问题
 
 [slide]
-# tcp 
+## TCP
 ----
-报头
-* 连接管理 三次握手 四次挥手
-<!-- 三次握手是否可以改成两次？  -->
+
+* 连接管理
 * 可靠传输
-<!-- 单双工，半全，抓包图， http机制的又改成了单工 -->
-
-* 滑动窗口 MSS
-<!-- MTU,为什么要有mss，为什么不让IP层分片? -->
-<!-- 有两张图，发送窗口，接收窗口，序号按字节来算 -->
-
 * 流量控制
-<!-- MTU,为什么要有mss，为什么不让IP层分片? -->
-<!-- 有两张图，发送窗口，接收窗口，序号按字节来算 -->
-
-* 拥塞避免 
-<!-- 
-慢开始（下载慢慢变快）
-快重传（不需要等timeout）
-快恢复（迅雷为什么那么快，端口平分网速）
--->
-
-* 糊涂窗口综合症
-<!-- 什么时候发送数据的问题，攒数据，满mss或者200ms -->
-
-<!--
-抓包图
-心跳（tcp自带心跳，业务心跳，reset）
-不讲：同个端口是否能被多个应用绑定，reuse readdr , UDP和TCP端口是否能重复
--->
+* 拥塞避免
+* 心跳
 
 [slide]
-# tcp 三次握手
+## TCP 报头
 
-俩图
+<div >
+    <img src="/img/tcp.png">
+</div>
 
-[slide]
-# tcp 四次挥手
-* 单双工
-
-[slide]
-# tcp 连接抓包图
-* 单双工
+--- 
+> 没什么问题 {:&.rollIn}
 
 [slide]
-# tcp 如何保证不丢包 按顺到达
-* 编号
-* ACK
+## TCP 三次握手
+
+<div >
+    <img src="/img/handshake.png">
+</div>
+
+--- 
+> 三次握手是否可以改成两次 {:&.rollIn}
 
 [slide]
-# tcp 发送端滑动窗口
+## TCP 四次挥手
+
+<div >
+    <img src="/img/bey.jpg">
+</div>
+
+--- 
+> 可以强制关闭连接吗{:&.rollIn}
+
 
 [slide]
-# tcp 接受端滑动窗口
+## TCP 抓包图
+
+<div >
+    <img src="/img/handshakeSnap.jpg">
+</div>
+
+--- 
+> 没有问题 {:&.rollIn}
 
 [slide]
-# tcp MSS
+## TCP 可靠、有序传输
+
+* 对字节编号
+* 确认
+* 差错校验
+* 丢包重传
+
+--- 
+> 没有问题 {:&.rollIn}
 
 [slide]
-## Nagle’s Algorithm：
+## TCP 流量控制-滑动窗口
+
+<div >
+    <img src="/img/window.jpg">
+</div>
+
+--- 
+> 窗口最大能有多大 {:&.rollIn}
+
+[slide]
+## MSS(Maximum Segment Size)
+
+--- 
+> IP能分片为什么要有MSS {:&.rollIn}
+
+
+[slide]
+## 糊涂窗口综合征 && Nagle 算法
 ----
 
 <pre><code class="markdown">/* 伪代码如下 */
@@ -262,10 +248,24 @@ end if
 </pre>
 
 [slide]
-# tcp 流量控制
+## TCP 拥塞避免
+
+<div >
+    <img src="/img/congestionAvoid.jpg">
+</div>
+
+---
+> 下载为什么慢慢变快 {:&.rollIn}
+> 用迅雷了为什么网页打不开
+> http 1.0 1.1 2.0 区别
 
 [slide]
-# tcp 拥塞避免
+## TCP 拥塞避免
+
+---
+* 下载慢慢变快 {:&.rollIn}
+* 使用BT下载后上网很卡
+* http1.0 1.1 2.0区别 
 
 [slide]
 # heartbeat
