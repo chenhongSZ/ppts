@@ -45,19 +45,22 @@ OSI | TCP/IP | PDU（协议数据单元） | protocol
 
 [slide]
 ## 网络接口层(mac 报头)
-----
+
 <div >
     <img src="/img/mac.png">
 </div>
 ---
-> 为什么数据会有大小限制
+> 为什么数据会有大小限制 {:&.rollIn}
 
 [slide]
 ## MTU（Maximum Transmission Unit）
-----
+
 <div >
     <img src="/img/mtu.png">
 </div>
+
+---
+> MTU大点好还是小点好 {:&.rollIn}
 
 [slide]
 ## 网际层
@@ -72,16 +75,16 @@ OSI | TCP/IP | PDU（协议数据单元） | protocol
     * 路由转发
     * NAT
 ---    
-> 有了mac地址为什么还要有IP地址
+> 有了mac地址为什么还要有IP地址 {:&.rollIn}
 
 [slide]
 ## 网际层(IP 报头)
-----
+
 <div >
     <img src="/img/ip.png">
 </div>
 ---
-> 有MTU限制，IP大包如何传递
+> 有MTU限制，IP大包如何传递 {:&.rollIn}
 
 [slide]
 ## ARP(Address Resolution Protocol)
@@ -108,25 +111,7 @@ OSI | TCP/IP | PDU（协议数据单元） | protocol
 * TCP (Transmission Control Protocol)
 
 ---
-> UDP不可靠指的是包容易丢还是内容不可靠
-
-<!-- UDP（不可靠传输）
-优势以及合适的场景，语音 视屏
-广播和多波，QQ自己重写确认机制，游戏，视频
-
-TCP（可靠传输）
-滑动窗口
-流量控制
-拥塞控制
-连接管理
-
-端口： 
-熟知端口号
-登记端口号
-客户端使用的端口号
-tip: UDP和TCP使用的是两套端口，可以相同 
-
-问题：UDP不可靠指的是包容易丢还是内容不可靠？ -->
+> UDP不可靠指的是包容易丢还是内容不可靠 {:&.rollIn}
 
 [slide]
 ## 端口
@@ -137,7 +122,7 @@ tip: UDP和TCP使用的是两套端口，可以相同
 * 随机端口
 
 ---
-> udp和tcp的端口可以相同吗 不同进程可以绑定同个端口吗
+> udp和tcp的端口可以相同吗 不同进程可以绑定同个端口吗 {:&.rollIn}
 
 [slide]
 ## UDP 报头
@@ -147,7 +132,7 @@ tip: UDP和TCP使用的是两套端口，可以相同
 </div>
 
 ---
-> udp不可靠是指包容易丢，还是收到的内容会有问题
+> udp不可靠是指包容易丢，还是收到的内容会有问题 {:&.rollIn}
 
 [slide]
 ## TCP
@@ -255,44 +240,40 @@ end if
 </div>
 
 ---
-> 下载为什么慢慢变快 {:&.rollIn}
-> 用迅雷了为什么网页打不开
-> http 1.0 1.1 2.0 区别
+> 没啥问题 {:&.rollIn}
 
 [slide]
-## TCP 拥塞避免
+## TCP 拥塞避免-现象
 
 ---
 * 下载慢慢变快 {:&.rollIn}
 * 使用BT下载后上网很卡
-* http1.0 1.1 2.0区别 
+* http1.0 1.1 2.0在这方面的区别
 
 [slide]
-# heartbeat
+# heartbeat 应用和场景
 ----
-<!-- 三次握手是否可以改成两次？  -->
-* keep-alive
+* TCP keep-alive
 * 应用层心跳
-* reset 
+* 断网、断电、kill进程
+
+---
+> 有问题吗 {:&.rollIn}
+
+[slide]
+# 线程模型
+----
+* JAVA BIO、NIO
+* 同步异步
+* 阻塞非阻塞
+* select、poll、epoll
+
+---
+> 有问题吗 {:&.rollIn}
+
 [slide]
 # 应用层
-<font size="4" color="yellow">会话层/表示层／应用层</font>
 ----
-
-http 超文本传输协议
-Linux IO模型 理解socket编程从应用层接口到驱动收发包的全部过程 2
-BIO,NIO,AIO, 比较。 select,epoll,iocp 2 对比图
-同步异步（消息通信机制），阻塞非阻塞的区别（程序在等待调用结果（消息，返回值）时的状态）。 
-bio自己去邮局取快递，取不到就不回家，一直打电话，知道有快递到。
-NIO，大家一起请一个快递员帮大家送（netty中work线程不推荐耗时操作
-
-
-[slide]
-JAVA
-BIO 面向流
-NIO 面向缓冲
-
-[slide]
-#例子
-小tomcat(半包问题，BIO)
-小kafka(NIO, zero copy，协议类似tcp)
+* 举个例子
+    * 最简单模拟tomcat实现
+    * 最简单模拟kafka实现
