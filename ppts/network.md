@@ -117,7 +117,7 @@ OSI | TCP/IP | PDU（协议数据单元） | protocol
 ## 端口
 <font size="4" color="yellow">传输层</font>
 ----
-* 常用端口
+* 知名端口
 * 登记端口号
 * 随机端口
 
@@ -147,7 +147,7 @@ OSI | TCP/IP | PDU（协议数据单元） | protocol
 [slide]
 ## TCP 报头
 
-<div >
+<div hight="300px">
     <img src="/img/tcp.png">
 </div>
 
@@ -157,7 +157,7 @@ OSI | TCP/IP | PDU（协议数据单元） | protocol
 [slide]
 ## TCP 三次握手
 
-<div >
+<div>
     <img src="/img/handshake.png">
 </div>
 
@@ -168,7 +168,7 @@ OSI | TCP/IP | PDU（协议数据单元） | protocol
 ## TCP 四次挥手
 
 <div >
-    <img src="/img/bey.jpg">
+    <img style="" src="/img/bye.png">
 </div>
 
 --- 
